@@ -43,10 +43,12 @@ export const handleComplete = async (image: { id: any; }, category: { id: any; }
     };
   }
 
+  const data = await response.json();
+
   return {
     status: response.status,
     error: true,
-    data: await response.json(),
+    data,
     message: "Annotation not submitted"
   };
 }

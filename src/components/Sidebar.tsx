@@ -1,23 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CategorySelection from "./CategorySelection";
-import { handleComplete, handleDiscard } from "@/services/api";
+import { fetchCategories, handleComplete, handleDiscard } from "@/services/api";
 
 export interface SidebarProps {
   setSelectedCategory: (category: any) => void;
   category: any;
+  categories: any[];
   boundingBox: any;
   image: any;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
   category,
+  categories,
   setSelectedCategory,
   boundingBox,
   image,
 }) => {
   return (
     <div className="sidebar w-[300px] bg-gray-200 p-5 flex flex-col box-border">
-      <CategorySelection onSelectCategory={(cat) => setSelectedCategory(cat)} />
+      <CategorySelection
+        categories={categories}
+        category={category}
+        onSelectCategory={(cat) => setSelectedCategory(cat)}
+      />
       <div className="buttons mt-5 flex justify-between">
         <button
           onClick={() => handleDiscard(image)}
